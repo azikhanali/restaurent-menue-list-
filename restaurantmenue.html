@@ -1,0 +1,133 @@
+<html>
+    <head>
+        <style>
+            body{
+                margin:0;
+                background-color: lightblue;
+            }
+            body h2,h3{
+                display: inline-block;
+            }
+            body h3{
+                margin:0 30px;
+            }
+            .container{
+                width:50%;
+                margin:0 auto;
+            }
+            .button{
+                display:flex;
+                flex-wrap: wrap;
+            }
+            .button .ourMenue{
+                width:100%;
+            }
+            .button button{
+                width:33.3%;
+            }
+            ul li{
+                list-style: none;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content:left;
+                margin-bottom: 20px;
+                width: 70%;
+                margin:0 auto
+            }
+            ul li img{
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="button">
+                <button class="ourMenue">OUR MENUE</button>
+                <button class="Appetizer">APPETIZER</button>
+                <button class="Coffee">COFFEE</button>
+                <button class="mainCourse">MAIN COURSE</button>
+            </div>
+            <div class="mainMenue">
+            <ul></ul>
+            </div>
+        </div>
+        <script>
+            var menue= [
+                {
+                    name:"Caesar Salad",
+                    price:"440 T",
+                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTamaM1ZGiU5rfDk3FfGEBQlo5m5JuQMkcQNQ&s",                   ingredient:"Grilled Chicken breast-Lettuce-Croutons rep-Caesar Sauce",
+                    type:"Appetizer"
+                },
+                { 
+                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2D3XaPIb5GYOGas2zSIsoi9sHySh0okUfTA&s",
+                    name:"Steak Salad",
+                    price:"480 T" ,
+                    ingredient:"Grilled fillet slices-baby spinach-halloumi cheese-balsamic sauce",
+                    type:"Appetizer"
+                },
+                { 
+                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2D3XaPIb5GYOGas2zSIsoi9sHySh0okUfTA&s",
+                    name:"Green Salad",
+                    price:"290 T" ,
+                    ingredient:"pestu sauce",
+                    type:"Appetizer"
+                },
+                {
+                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkeojNLSB8hIV4QAsWwUfhi7xKWKM3V_Rz7A&s",
+                    name:"Steak Pizza",
+                    price:"490 T",
+                    ingredient:" fillet slices, mushroom, bell pepper, mozzarella cheese, marinara sauce",
+                    type:"main course"},
+                {
+                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTamaM1ZGiU5rfDk3FfGEBQlo5m5JuQMkcQNQ&s",
+                    name:"Chicken Pizza",
+                    price:"470 T",
+                    ingredient:" breast,mushroom, bell pepper, mozzarella cheese, marinara sauce",
+                    type:"main course"
+                },
+                {
+                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaxJPpDCeHvXEzdJUkmb7AynbGoX0hedAIyA&s",
+                    name:"Fresh Juice",
+                    price:"135 T",
+                    ingredient:"Carrot, Orange...",
+                    type:"coffee"
+                },
+                {
+                    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaxJPpDCeHvXEzdJUkmb7AynbGoX0hedAIyA&s",
+                    name:"Ice Coffee",
+                    price:"245 T",
+                    ingredient:"Americano,Latte, ...",
+                    type:"coffee"
+                }
+            ]
+            let list="";
+            let listMaker=(a) =>{
+                document.querySelector(".mainMenue ul").innerHTML="";
+                let menueList = a.forEach( function({img,name,price,ingredient}){    
+                    list=list+`<li><img src=${img}/><span><h2>${name}</h2><h3>${price}</h3></span><h5>${ingredient}</h5></li>`;
+                })
+                document.querySelector(".mainMenue ul").innerHTML=list;
+                }
+            let allList=document.querySelector(".ourMenue").addEventListener("click",function(){
+                listMaker(menue)
+                })
+            let appetizerList=document.querySelector(".Appetizer").addEventListener("click",function(){
+                let filteredapppetize=menue.filter(filterFun=>filterFun.type=="Appetizer");
+                listMaker(filteredapppetize);
+                })
+            let coffeeList=document.querySelector(".Coffee").addEventListener("click",function(){
+                let filteredcoffee=menue.filter(filterFun=>filterFun.type=="coffee");
+                listMaker(filteredcoffee);
+                })
+            let maincouseList=document.querySelector(".mainCourse").addEventListener("click",function(){
+                let filteredmaincourse=menue.filter(filterFun=>filterFun.type=="main course");
+                listMaker(filteredmaincourse);
+                })
+        </script>
+    </body>
+</html>
